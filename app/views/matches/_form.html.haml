@@ -1,0 +1,39 @@
+= form.error_messages :header_message => nil, :message => nil
+
+%table.bottom_spaced{:width => "100%"}
+  %tr
+    %td
+      = form.label :team1_id
+      %br/
+      = form.collection_select :team1_id, @teams, :id, :name, :include_blank => true
+    %td
+      = form.label :team2_id
+      %br/
+      = form.collection_select :team2_id, @teams, :id, :name, :include_blank => true
+  
+  %tr
+    %td
+      = form.label :duration
+      %br/
+      = form.text_field :duration, :value => format_time(@match.duration), :size => 5
+    %td
+      = form.label :description
+      %br/
+      = form.text_area :description, :rows => 4, :cols => 35
+      
+  - unless @match.new_record?
+    %tr
+      %td
+        = form.label :points1
+        %br/
+        = form.text_field :points1, :size => 5
+      %td
+        = form.label :points2
+        %br/
+        = form.text_field :points2, :size => 5
+  
+= content_for :js do
+  :javascript
+    $(document).ready(function () {
+      $('#match_team1_id').focus();
+    });

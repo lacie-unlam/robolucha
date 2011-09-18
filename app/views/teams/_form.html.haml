@@ -1,0 +1,9 @@
+= form.error_messages :header_message => nil, :message => nil
+
+%p
+  = form.label :name
+  = form.text_field :name
+
+%p
+  = form.label :approval_time
+  = form.text_field :approval_time, :value => format_time(@team.approval_time), :size => 5

@@ -1,0 +1,4 @@
+%li
+  = link_to team.name, edit_team_path(team)
+  = link_to image_tag("delete.png"), team, :method => :delete, 
+            :confirm => "¿Está seguro desea eliminar el #{Team.model_name.human} '#{team.name}'?"

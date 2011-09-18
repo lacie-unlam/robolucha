@@ -1,0 +1,107 @@
+%p.centered
+  %input#start{:type => "button", :value => "Comenzar"}
+  &nbsp;|&nbsp;
+  %input#stop{:type => "button", :value => "Parar"}
+  &nbsp;|&nbsp;
+  %input#continue{:type => "button", :value => "Continuar"}
+
+%table{:border => "1", :width => "100%", :align => "center"}
+  %tr
+    %td.time{:colspan => "2", :align => "center"}
+      %span#mins= mins(@match.duration, :string)
+      &nbsp;:&nbsp;
+      %span#secs= secs(@match.duration, :string)
+  %tr
+    %td{:align => "center", :style => "width: 50%"}
+      %h1
+        %span#points1.point 0
+    %td{:align => "center", :style => "width: 50%"}
+      %h1
+        %span#points2.point 0
+
+%p
+  %table{:border => "1", :align => "center"}
+    %tr
+      %th{:align => "center", :style => "width: 50%"}= @match.team1
+      %th{:align => "center", :style => "width: 50%"}= @match.team2
+    %tr
+      %td{:align => "center"}
+        %input.plus_one{:type => "button", :value => "+1", "data-team" => "1"}
+        &nbsp;/&nbsp;
+        %input.minus_one{:type => "button", :value => "-1", "data-team" => "1"}
+      %td{:align => "center"}
+        %input.plus_one{:type => "button", :value => "+1", "data-team" => "2"}
+        &nbsp;/&nbsp;
+        %input.minus_one{:type => "button", :value => "-1", "data-team" => "2"}
+
+= form_for @match do |f|
+  = f.hidden_field :points1, :value => 0
+  = f.hidden_field :points2, :value => 0
+  
+  %p.centered
+    = f.submit "Guardar"
+        
+= content_for :js do
+  :javascript
+    timerStopped = true;
+    
+    $('#start').click(function() {
+      if(timerStopped) {
+        startDate = new Date();
+        mins = #{mins @match.duration};
+        secs = #{secs @match.duration};
+        
+        $('#mins').html('#{mins @match.duration, :string}');
+        $('#secs').html('#{secs @match.duration, :string}');
+        
+        timer = function() {          
+          if(!timerStopped && (mins > 0 || secs > 0)) {
+            if(secs == 0) {
+              secs = 59;
+              if(mins > 0)
+                mins -= 1;
+            } else {
+              secs -= 1;
+            }
+          
+            $('#mins').html(mins < 10 ? '0'+mins : mins);
+            $('#secs').html(secs < 10 ? '0'+secs : secs);
+            setTimeout(timer, 1000);
+          } else
+            timerStopped = true;
+        };
+        
+        timerStopped = false;
+        setTimeout(timer, 1000);
+      }
+    });
+    
+    $('#stop').click(function() {
+      timerStopped = true;
+    });
+    
+    $('#continue').click(function() {
+      if(timerStopped) {
+        timerStopped = false;
+        timer();
+      }
+    });
+    
+    var add_points = function(e, pts) {
+      var team = e.data('team');
+      var elem = $('#points'+team);
+      var points = parseInt(elem.html());
+      if(pts > 0 || points > 0)
+        points += pts;
+      
+      elem.html(points);
+      $('#match_points'+team).val(points);
+    }
+    
+    $('.plus_one').click(function() {
+      add_points($(this), 1);
+    });
+    
+    $('.minus_one').click(function() {
+      add_points($(this), -1);
+    });

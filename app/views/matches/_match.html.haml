@@ -1,0 +1,6 @@
+%li
+  = link_to match, edit_match_path(match)
+  = link_to image_tag("play.png"), play_match_path(match)
+  &nbsp;|&nbsp;
+  = link_to image_tag("delete.png"), match, :method => :delete, 
+            :confirm => "¿Está seguro desea eliminar la #{Match.model_name.human}?"

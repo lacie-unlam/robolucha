@@ -1,0 +1,9 @@
+= content_for :title, @team.name
+
+= form_for @team do |f|
+  = render f
+  
+  %p
+    = f.submit "Actualizar"
+    &nbsp;|&nbsp;
+    = link_to "Volver", teams_path

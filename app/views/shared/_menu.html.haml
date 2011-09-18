@@ -1,0 +1,9 @@
+#menu
+  %ul
+    %li{:class => "#{"current_page_item " if current_page?(root_path)}"} 
+      = link_to "Home", root_path
+    %li{:class => "#{"current_page_item" if controller_name == "teams"}"}
+      = link_to Team.model_name.human.pluralize, teams_path
+    %li{:class => "#{"current_page_item" if controller_name == "matches"}"}
+      = link_to Match.model_name.human.pluralize, matches_path
+/ end #menu

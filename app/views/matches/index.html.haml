@@ -1,0 +1,5 @@
+= content_for :title, Match.model_name.human.pluralize.humanize
+
+= render "list", :list => @matches
+
+= link_to "Nueva #{Match.model_name.human}", new_match_path

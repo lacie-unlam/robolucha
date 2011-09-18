@@ -1,0 +1,9 @@
+= content_for :title, "Nuevo #{Team.model_name.human}"
+
+= form_for @team do |f|
+  = render f
+  
+  %p
+    = f.submit "Crear"
+    &nbsp;|&nbsp;
+    = link_to "Volver", teams_path

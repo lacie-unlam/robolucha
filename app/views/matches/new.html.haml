@@ -1,0 +1,9 @@
+= content_for :title, "Nueva #{Match.model_name.human}"
+
+= form_for @match do |f|
+  = render f
+  
+  %p
+    = f.submit "Crear"
+    &nbsp;|&nbsp;
+    = link_to "Volver", matches_path
