@@ -11,4 +11,9 @@ group :test, :development do
   gem 'rspec-rails', '~> 2.6'
 end
 
-gem 'heroku', :group => :development
+group :development do
+  # gem 'heroku'
+  gem 'capistrano'
+end
+
+gem "mysql2", "~> 0.2.7", :group => :production
