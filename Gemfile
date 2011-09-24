@@ -6,6 +6,7 @@ gem 'rails', '3.0.10'
 gem 'sqlite3'
 gem 'factory_girl_rails'
 gem 'faker'
+gem 'rake', '0.8.7'
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.6'
