@@ -7,6 +7,7 @@ set :repository,  "ssh://lacie2/home/samba/repos/robolucha.git"
 
 # default_run_options[:pty] = true
 default_environment['PATH'] = '$PATH:/var/lib/gems/1.9.1/bin'
+default_environment['http_proxy'] = 'http://localhost:3128'
 set :user, 'crasch'
 set :use_sudo, false
 set :deploy_via, :remote_cache
