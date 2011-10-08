@@ -70,7 +70,7 @@ img.aligncenter {
 /* Header */
 
 #header {
-  width: 940px;
+  width: 1280px;
   height: 160px;
   margin: 0px auto;
 }
@@ -78,7 +78,7 @@ img.aligncenter {
 /* Logo */
 
 #logo {
-  width: 940px;
+  width: 1280px;
   height: 160px;
   margin: 0px;
   padding: 0px;
@@ -152,7 +152,7 @@ img.aligncenter {
 /* Menu */
 
 #menu {
-  width: 940px;
+  width: 1280px;
   height: 50px;
   margin: 0px auto;
   padding: 0px;
@@ -196,7 +196,7 @@ img.aligncenter {
 /* Page */
 
 #page {
-  width: 940px;
+  width: 1280px;
   margin: 0px auto;
   padding: 0px;
 }
@@ -333,7 +333,7 @@ img.aligncenter {
 /* Footer */
 
 #footer {
-  width: 940px;
+  width: 1280px;
   margin: 0px auto;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -344,13 +344,14 @@ img.aligncenter {
   line-height: normal;
   font-size: 10px;
   text-transform: uppercase;
+  text-align: center;
 }
 
 #footer a {
 }
 
 .time {
-  font: 200px bold;
+  font: 250px bold;
 }
 
 .point {

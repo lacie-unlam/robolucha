@@ -14,10 +14,10 @@
   %tr
     %td{:align => "center", :style => "width: 50%"}
       %h1
-        %span#points1.point 0
+        %span#points1.point
     %td{:align => "center", :style => "width: 50%"}
       %h1
-        %span#points2.point 0
+        %span#points2.point
 
 %p
   %table{:border => "1", :align => "center"}
@@ -89,21 +89,28 @@
       }
     });
     
-    var add_points = function(e, pts) {
+    var addPoints = function(e, pts) {
       var team = e.data('team');
+      var hidden = $('#match_points'+team);
+      var points = parseInt(hidden.val());
       var elem = $('#points'+team);
-      var points = parseInt(elem.html());
-      if(pts > 0 || points > 0)
-        points += pts;
       
-      elem.html(points);
+      if(pts > 0 || points > 0) {
+        if(pts > 0)
+          elem.append($('<img src="#{image_path "unlam.gif"}" border="0"/>'));
+        else if(points > 0)
+          $('img:last', elem).remove();
+          
+        points += pts;
+      }
+      
       $('#match_points'+team).val(points);
-    }
+    };
     
     $('.plus_one').click(function() {
-      add_points($(this), 1);
+      addPoints($(this), 1);
     });
     
     $('.minus_one').click(function() {
-      add_points($(this), -1);
+      addPoints($(this), -1);
     });
