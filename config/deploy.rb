@@ -8,15 +8,15 @@ set :repository,  "git://lacie2/robolucha.git"
 
 # default_run_options[:pty] = true
 default_environment['PATH'] = '$PATH:/var/lib/gems/1.9.1/bin'
-default_environment['http_proxy'] = 'http://localhost:3128'
+default_environment['http_proxy'] = 'http://lacie2:3128'
 set :user, 'crasch'
 set :use_sudo, false
 set :deploy_via, :remote_cache
 set :deploy_to, "/home/#{user}/public_html/#{application}"
 
-role :web, "lacie2"                          # Your HTTP server, Apache/etc
-role :app, "lacie2"                          # This may be the same as your `Web` server
-role :db,  "lacie2", :primary => true        # This is where Rails migrations will run
+role :web, "ggg"                          # Your HTTP server, Apache/etc
+role :app, "ggg"                          # This may be the same as your `Web` server
+role :db,  "ggg", :primary => true        # This is where Rails migrations will run
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
