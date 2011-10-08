@@ -8,6 +8,4 @@ gem 'factory_girl_rails'
 gem 'faker'
 gem 'rake', '0.8.7'
 
-group :test, :development do
-  gem 'rspec-rails', '~> 2.6'
-end
+gem 'capistrano', :group => :development
