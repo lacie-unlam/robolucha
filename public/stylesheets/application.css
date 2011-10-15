@@ -365,3 +365,9 @@ img.aligncenter {
 .bottom_spaced {
   padding-bottom: 10px;
 }
+
+.team {
+  width: 50%;
+  text-align: center;
+  font-size: 25px;
+}

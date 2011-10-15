@@ -22,8 +22,8 @@
 %p
   %table{:border => "1", :align => "center"}
     %tr
-      %th{:align => "center", :style => "width: 50%"}= @match.team1
-      %th{:align => "center", :style => "width: 50%"}= @match.team2
+      %th.team= @match.team1
+      %th.team= @match.team2
     %tr
       %td{:align => "center"}
         %input.plus_one{:type => "button", :value => "+1", "data-team" => "1"}
