@@ -11,11 +11,11 @@ module ApplicationHelper
   
   def mins(time, format = nil)
     m = time/60
-    format.nil? || m > 10 ? m : "0#{m}"
+    format.nil? || m > 9 ? m : "0#{m}"
   end  
   
   def secs(time, format = nil)
     s = time%60
-    format.nil? || s > 10 ? s : "0#{s}"
+    format.nil? || s > 9 ? s : "0#{s}"
   end
 end
