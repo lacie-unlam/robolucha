@@ -215,6 +215,7 @@ es-AR:
         points1: Puntos equipo 1
         points2: Puntos equipo 2
         duration: Duración (mm:ss)
+        rounds_nbr: Nro. de rounds
         
     errors:
       template:

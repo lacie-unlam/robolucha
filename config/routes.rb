@@ -1,8 +1,8 @@
 Robolucha::Application.routes.draw do
   resources :matches do
-    member do
-      get 'play'
-    end
+    get 'play', :on => :member
+    
+    resources :rounds, :only => [:new, :create]
   end
   
   resources :teams

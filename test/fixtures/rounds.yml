@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  points_team1: 1
+  points_team2: 1
+  match_id: 1
+
+two:
+  points_team1: 1
+  points_team2: 1
+  match_id: 1

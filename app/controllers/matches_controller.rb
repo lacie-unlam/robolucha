@@ -1,8 +1,10 @@
+# encoding: UTF-8
+
 class MatchesController < ApplicationController
   before_filter :fetch_teams, :only => [:new, :edit]
   
   def index
-    @matches = Match.includes(:team1, :team2).sorted
+    @matches = Match.includes(:team1, :team2, :rounds).sorted
   end
   
   def new
@@ -41,7 +43,13 @@ class MatchesController < ApplicationController
   end
   
   def play
-    @match = Match.find(params[:id], :include => [:team1, :team2])
+    @match = Match.find(params[:id], :include => :rounds)
+    
+    if @match.winner
+      redirect_to matches_path, :alert => "#{Match.model_name.human.humanize} terminada. El ganador es: #{@match.winner}"
+    else
+      redirect_to new_match_round_path(@match)
+    end
   end
   
   private

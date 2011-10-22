@@ -13,25 +13,20 @@
   
   %tr
     %td
+      = form.label :rounds_nbr
+      %br/
+      = form.select :rounds_nbr, (1..5).map {|i| [i,i]}
+    %td
       = form.label :duration
       %br/
       = form.text_field :duration, :value => format_time(@match.duration), :size => 5
-    %td
-      = form.label :description
-      %br/
-      = form.text_area :description, :rows => 4, :cols => 35
       
-  - unless @match.new_record?
     %tr
-      %td
-        = form.label :points1
+      %td{:colspan => 2}
+        = form.label :description
         %br/
-        = form.text_field :points1, :size => 5
-      %td
-        = form.label :points2
-        %br/
-        = form.text_field :points2, :size => 5
-  
+        = form.text_area :description, :rows => 4, :cols => 35
+      
 = content_for :js do
   :javascript
     $(document).ready(function () {

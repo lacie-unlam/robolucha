@@ -1,6 +1,9 @@
 %li
   = link_to match, edit_match_path(match)
-  = link_to image_tag("play.png", :border => 0), play_match_path(match)
+  - if match.winner
+    #{"- Ganador: #{match.winner}"}
+  - else
+    = link_to image_tag("play.png", :border => 0), play_match_path(match)
   &nbsp;|&nbsp;
   = link_to image_tag("delete.png", :border => 0), match, :method => :delete, 
             :confirm => "¿Está seguro desea eliminar la #{Match.model_name.human}?"
