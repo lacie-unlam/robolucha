@@ -1,7 +1,5 @@
 Robolucha::Application.routes.draw do
   resources :matches do
-    get 'play', :on => :member
-    
     resources :rounds, :only => [:new, :create]
   end
   
