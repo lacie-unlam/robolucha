@@ -8,15 +8,13 @@ class Match < ActiveRecord::Base
   validates :team1_id, :numericality => { :greater_than => 0, :message => I18n.t("errors.messages.blank") }
   validates :team2_id, :numericality => { :greater_than => 0, :message => I18n.t("errors.messages.blank") }
   validates :duration, :numericality => { :greater_than => 0, :message => I18n.t("errors.messages.blank") }
-  validates :points1, :numericality => true, :allow_nil => true
-  validates :points2, :numericality => true, :allow_nil => true
   validate :teams_must_be_different
   
   scope :sorted, order("created_at desc")
   
   before_save :humanize_description
   
-  attr_accessible :team1_id, :team2_id, :duration, :description, :points1, :points2
+  attr_accessible :team1_id, :team2_id, :duration, :description
   time_writer :duration
   
   def to_s
