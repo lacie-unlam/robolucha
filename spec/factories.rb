@@ -6,8 +6,6 @@ FactoryGirl.define do
   
   factory :match do
     description { Faker::Lorem.sentence }
-    points1 { rand(10) }
-    points2 { rand(10) }
     duration { "#{rand(59)+1}:#{rand(59)+1}" }
     
     association :team1, :factory => :team
