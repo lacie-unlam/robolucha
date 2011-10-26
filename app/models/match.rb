@@ -17,6 +17,10 @@ class Match < ActiveRecord::Base
   attr_accessible :team1_id, :team2_id, :duration, :description
   time_writer :duration
   
+  default_value_for :duration do
+    (Configuration.first || Configuration.new).default_match_duration
+  end
+  
   def to_s
     "#{team1} vs. #{team2}"
   end

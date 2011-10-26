@@ -6,4 +6,6 @@
       = link_to Team.model_name.human.pluralize, teams_path
     %li{:class => "#{"current_page_item" if controller_name == "matches"}"}
       = link_to Match.model_name.human.pluralize, matches_path
+    %li{:class => "#{"current_page_item" if controller_name == "configurations"}"}
+      = link_to Configuration.model_name.human, new_configuration_path
 / end #menu

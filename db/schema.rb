@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111022211037) do
+ActiveRecord::Schema.define(:version => 20111025234136) do
+
+  create_table "configurations", :force => true do |t|
+    t.integer  "default_match_duration", :default => 90
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "matches", :force => true do |t|
     t.integer  "team1_id"

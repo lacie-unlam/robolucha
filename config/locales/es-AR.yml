@@ -204,6 +204,7 @@ es-AR:
     models:
       team: equipo
       match: partida
+      configuration: configuración
     attributes:
       team:
         name: Nombre
@@ -216,6 +217,8 @@ es-AR:
         points2: Puntos equipo 2
         duration: Duración (mm:ss)
         rounds_nbr: Nro. de rounds
+      configuration:
+        default_match_duration: Duración de las partidas por defecto
         
     errors:
       template:

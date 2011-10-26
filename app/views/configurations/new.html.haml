@@ -1,0 +1,16 @@
+= content_for :title, Configuration.model_name.human.humanize
+
+= form_for @configuration, :url => configuration_path, :html => { :method => :post } do |f|
+  = f.error_messages :header_message => nil, :message => nil
+
+  %p
+    = f.label :default_match_duration
+    %br/
+    = f.text_field :default_match_duration, 
+                   :value => format_time(@configuration.default_match_duration), 
+                   :size => 5
+  
+  %p
+    = f.submit "Guardar"
+    &nbsp;|&nbsp;
+    = link_to "Volver", root_path

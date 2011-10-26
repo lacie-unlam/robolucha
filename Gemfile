@@ -7,5 +7,6 @@ gem 'sqlite3'
 gem 'factory_girl_rails'
 gem 'faker'
 gem 'rake', '0.8.7'
+gem 'default_value_for'
 
 gem 'capistrano', :group => :development
