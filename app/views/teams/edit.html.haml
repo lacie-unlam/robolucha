@@ -1,6 +1,6 @@
 = content_for :title, @team.name
 
-= form_for @team do |f|
+= form_for @team, :html => {:id => 'team_form'} do |f|
   = render f
   
   %p

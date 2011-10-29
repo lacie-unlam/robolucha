@@ -1,9 +1,61 @@
 = form.error_messages :header_message => nil, :message => nil
+= form.hidden_field :approval_time, :value => format_time(@team.approval_time)
 
 %p
   = form.label :name
   = form.text_field :name
 
-%p
-  = form.label :approval_time
-  = form.text_field :approval_time, :value => format_time(@team.approval_time), :size => 5
+.approval_time
+  %h3 Tiempo de homologación
+  %input#start{:type => "button", :value => "Comenzar"}
+  &nbsp;|&nbsp;
+  %input#stop{:type => "button", :value => "Parar"}
+  &nbsp;|&nbsp;
+  %input#continue{:type => "button", :value => "Continuar"}
+  %div.timer= format_time(@team.approval_time)
+  
+= content_for :js do
+  :javascript
+    $('#team_form').submit(function() {
+      if(mins > 0 || secs > 0)
+        $('#team_approval_time').val($('.timer').html());
+    });
+    
+    timerStopped = true;
+    
+    $('#start').click(function() {
+      if(timerStopped) {
+        timerStopped = false;
+        mins = 0;
+        secs = 0;
+        
+        timer = function() {          
+          if(!timerStopped) {
+            if(secs < 59)
+              secs += 1;
+            else {
+              secs = 0;
+              mins += 1;
+            }
+          
+            $('.timer').html((mins < 10 ? '0'+mins : mins)+':'+(secs < 10 ? '0'+secs : secs));
+            setTimeout(timer, 1000);
+          }
+        };
+        
+        $('.timer').html('00:00');
+        setTimeout(timer, 1000);
+      }
+    });
+    
+    $('#stop').click(function() {
+      if(! timerStopped)
+        timerStopped = true;
+    });
+    
+    $('#continue').click(function() {
+      if(timerStopped) {
+        timerStopped = false;
+        timer();
+      }
+    });

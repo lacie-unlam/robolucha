@@ -1,11 +1,11 @@
 class RoundsController < ApplicationController
   def new
-    @match = Match.find(params[:match_id], :include => [:team1, :team2])
+    @match = Match.find(params[:match_id], :include => [:team1, :team2, :rounds])
     @round = @match.rounds.build
   end
   
   def create
-    @match = Match.find(params[:match_id])
+    @match = Match.find(params[:match_id], :include => :rounds)
     @match.rounds.create(params[:round])
     
     if @match.winner

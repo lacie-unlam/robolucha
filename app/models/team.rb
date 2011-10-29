@@ -2,7 +2,7 @@ class Team < ActiveRecord::Base
   include TimeUtils
   
   validates :name, :presence => true, :uniqueness => true
-  validates :approval_time, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :approval_time, :numericality => { :greater_than => 0, :on => :update }
   
   scope :sorted, order("approval_time, name")
   

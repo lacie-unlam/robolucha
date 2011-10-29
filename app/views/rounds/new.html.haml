@@ -7,6 +7,8 @@
 
 %table{:border => "1", :width => "100%", :align => "center"}
   %tr
+    %td.round{:align => "center", :colspan => 2}= "Round ##{@match.rounds.size}"
+  %tr
     %td.time{:colspan => "2", :align => "center"}
       %span#mins= mins(@match.duration, :string)
       &nbsp;:&nbsp;
@@ -69,8 +71,7 @@
             $('#mins').html(mins < 10 ? '0'+mins : mins);
             $('#secs').html(secs < 10 ? '0'+secs : secs);
             setTimeout(timer, 1000);
-          } else
-            timerStopped = true;
+          }
         };
         
         timerStopped = false;
@@ -79,7 +80,8 @@
     });
     
     $('#stop').click(function() {
-      timerStopped = true;
+      if(! timerStopped)
+        timerStopped = true;
     });
     
     $('#continue').click(function() {

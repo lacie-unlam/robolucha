@@ -14,7 +14,7 @@ class Match < ActiveRecord::Base
   
   before_save :humanize_description
   
-  attr_accessible :team1_id, :team2_id, :duration, :description
+  attr_accessible :team1_id, :team2_id, :duration, :description, :rounds_nbr
   time_writer :duration
   
   default_value_for :duration do

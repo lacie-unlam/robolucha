@@ -371,3 +371,18 @@ img.aligncenter {
   text-align: center;
   font-size: 25px;
 }
+
+.round {
+  font-size: xx-large;
+}
+
+.approval_time {
+  width: 21%;
+  text-align: center;
+  border: 2px solid;
+  margin-bottom: 10px;
+}
+
+.timer {
+  font-size: xx-large;
+}
