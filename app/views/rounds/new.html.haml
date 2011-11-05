@@ -44,6 +44,9 @@
     = f.submit "Guardar"
     &nbsp;|&nbsp;
     = link_to "Volver", matches_path
+  %p.centered
+    = check_box_tag :add_extra_round
+    Agregar extra round
         
 = content_for :js do
   :javascript

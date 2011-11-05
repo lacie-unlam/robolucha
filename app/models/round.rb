@@ -7,9 +7,9 @@ class Round < ActiveRecord::Base
   
   def winner
     if points_team1 > points_team2
-      match.team1_id
+      1
     elsif points_team1 < points_team2
-      match.team2_id
+      2
     end
   end
 end

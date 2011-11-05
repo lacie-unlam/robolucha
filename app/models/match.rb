@@ -27,8 +27,8 @@ class Match < ActiveRecord::Base
   
   def winner
     @winner ||= if rounds.size == rounds_nbr
-      rounds_team1 = rounds.select {|round| round.winner == team1_id}.length
-      rounds_team2 = rounds.select {|round| round.winner == team2_id}.length
+      rounds_team1 = rounds.select {|round| round.winner == 1}.length
+      rounds_team2 = rounds.select {|round| round.winner == 2}.length
       
       if rounds_team1 > rounds_team2
         team1
@@ -47,6 +47,11 @@ class Match < ActiveRecord::Base
         end        
       end
     end
+  end
+  
+  def add_round(options)
+    rounds.create options[:round]
+    update_attribute :rounds_nbr, rounds_nbr+1 if options[:add_extra_round]
   end
   
   private
