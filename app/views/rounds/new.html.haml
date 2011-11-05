@@ -21,20 +21,19 @@
       %h1
         %span#points2.point
 
-%p
-  %table{:border => "1", :align => "center"}
-    %tr
-      %th.team= @match.team1
-      %th.team= @match.team2
-    %tr
-      %td{:align => "center"}
-        %input.plus_one{:type => "button", :value => "+1", "data-team" => "1"}
-        &nbsp;/&nbsp;
-        %input.minus_one{:type => "button", :value => "-1", "data-team" => "1"}
-      %td{:align => "center"}
-        %input.plus_one{:type => "button", :value => "+1", "data-team" => "2"}
-        &nbsp;/&nbsp;
-        %input.minus_one{:type => "button", :value => "-1", "data-team" => "2"}
+%table.teams{:border => "1", :align => "center"}
+  %tr
+    %th.team= @match.team1
+    %th.team= @match.team2
+  %tr
+    %td{:align => "center"}
+      %input.plus_one{:type => "button", :value => "+1", "data-team" => "1"}
+      &nbsp;/&nbsp;
+      %input.minus_one{:type => "button", :value => "-1", "data-team" => "1"}
+    %td{:align => "center"}
+      %input.plus_one{:type => "button", :value => "+1", "data-team" => "2"}
+      &nbsp;/&nbsp;
+      %input.minus_one{:type => "button", :value => "-1", "data-team" => "2"}
 
 = form_for [@match, @round] do |f|
   = f.hidden_field :points_team1, :value => 0
@@ -44,7 +43,7 @@
     = f.submit "Guardar"
     &nbsp;|&nbsp;
     = link_to "Volver", matches_path
-  %p.centered
+    %br/
     = check_box_tag :add_extra_round
     Agregar extra round
         
