@@ -47,21 +47,10 @@ class Match < ActiveRecord::Base
             team1
           elsif points_team1 < points_team2
             team2
-          else
-            "ninguno"
           end        
         end
       end
     end
-  end
-  
-  def add_round(options)
-    rounds.create options[:round]
-    update_attribute :rounds_nbr, rounds_nbr+1 if options[:add_extra_round]
-  end
-
-  def last_round?
-    rounds_nbr == rounds.size
   end
   
 private

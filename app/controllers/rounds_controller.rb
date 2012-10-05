@@ -6,7 +6,7 @@ class RoundsController < ApplicationController
   
   def create
     @match = Match.find(params[:match_id], :include => :rounds)
-    @match.add_round params
+    @match.rounds.create(params[:round])
     
     if @match.winner
       redirect_to matches_path, :notice => "#{Match.model_name.human.humanize} terminada. 
