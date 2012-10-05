@@ -26,25 +26,31 @@ class Match < ActiveRecord::Base
   end
   
   def winner
-    @winner ||= if rounds.size == rounds_nbr
+    @winner ||= begin
       rounds_team1 = rounds.select {|round| round.winner == 1}.length
       rounds_team2 = rounds.select {|round| round.winner == 2}.length
-      
-      if rounds_team1 > rounds_team2
-        team1
-      elsif rounds_team1 < rounds_team2
-        team2
-      else
-        points_team1 = rounds.inject(0) {|sum, round| sum + round.points_team1}
-        points_team2 = rounds.inject(0) {|sum, round| sum + round.points_team2}
-        
-        if points_team1 > points_team2
+      nbr_rounds_to_win = (rounds_nbr/2.0).ceil
+      nbr_rounds_to_win += 1 if rounds_nbr.even?
+      return team1 if rounds_team1 == nbr_rounds_to_win
+      return team2 if rounds_team2 == nbr_rounds_to_win
+
+      if rounds.size == rounds_nbr
+        if rounds_team1 > rounds_team2
           team1
-        elsif points_team1 < points_team2
+        elsif rounds_team1 < rounds_team2
           team2
         else
-          "ninguno"
-        end        
+          points_team1 = rounds.inject(0) {|sum, round| sum + round.points_team1}
+          points_team2 = rounds.inject(0) {|sum, round| sum + round.points_team2}
+          
+          if points_team1 > points_team2
+            team1
+          elsif points_team1 < points_team2
+            team2
+          else
+            "ninguno"
+          end        
+        end
       end
     end
   end
@@ -53,8 +59,12 @@ class Match < ActiveRecord::Base
     rounds.create options[:round]
     update_attribute :rounds_nbr, rounds_nbr+1 if options[:add_extra_round]
   end
+
+  def last_round?
+    rounds_nbr == rounds.size
+  end
   
-  private
+private
   
   def humanize_description
     self.description = description.humanize if description.present?
